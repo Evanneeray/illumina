@@ -238,6 +238,5 @@ for (file in files[-1]) {gunzip(paste0('./GSE129534/',file), destname =paste0('.
 files<-list.files(pattern = 'GSM')
 for(file in files) {assign((str_sub(file, 1, 10)),read.csv(paste0(file),sep='\t'))}
 
-x <- bind_cols(GSM3714991, GSM3714992, GSM3714993)
-x <- x %>% 
-  select(-matches("symbol.*"))
+bound <- bind_cols(mget(ls(pattern = "GSM"))) %>% 
+  select(-matches("symbol\\d+"))
