@@ -235,8 +235,10 @@ untar('GSE129534/GSE129534_RAW.tar', exdir = 'GSE129534')
 files<-list.files('./GSE129534')
 for (file in files[-1]) {gunzip(paste0('./GSE129534/',file), destname =paste0('./GSE129534/',(str_sub(file, 1, -4))),overwrite = FALSE,remove =TRUE)}
 
-files<-list.files('./GSE129534')
-for(file in files[-1]) {assign((str_sub(file, 1, 10)),read.csv(paste0('./GSE129534/',file),sep='\t'))}
+files<-list.files(pattern = 'GSM')
+for(file in files) {assign((str_sub(file, 1, 10)),read.csv(paste0(file),sep='\t'))}
+
+full_join()
 
 rm(list=ls())
   
